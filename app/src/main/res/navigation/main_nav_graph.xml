@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/notesFragment"
-        android:name="com.crisnavarro.todoapp.NotesFragment"
+        android:name="com.crisnavarro.todoapp.ui.notes.fragments.NotesFragment"
         android:label="fragment_notes"
         tools:layout="@layout/fragment_notes" >
         <action
@@ -19,7 +19,7 @@
     </fragment>
     <fragment
         android:id="@+id/addNoteFragment"
-        android:name="com.crisnavarro.todoapp.AddNoteFragment"
+        android:name="com.crisnavarro.todoapp.ui.addnotes.fragments.AddNoteFragment"
         android:label="fragment_add_note"
         tools:layout="@layout/fragment_add_note" >
         <action
@@ -28,7 +28,7 @@
     </fragment>
     <fragment
         android:id="@+id/updateNoteFragment"
-        android:name="com.crisnavarro.todoapp.UpdateNoteFragment"
+        android:name="com.crisnavarro.todoapp.ui.updatenotes.fragments.UpdateNoteFragment"
         android:label="fragment_update_note"
         tools:layout="@layout/fragment_update_note" >
         <action
