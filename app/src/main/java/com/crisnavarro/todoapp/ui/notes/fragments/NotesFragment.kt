@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.crisnavarro.todoapp.R
 import com.crisnavarro.todoapp.databinding.FragmentNotesBinding
 
@@ -23,6 +24,25 @@ class NotesFragment : Fragment(R.layout.fragment_notes) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setUpViews()
+        setUpListener()
+    }
+
+
+    private fun setUpViews() {}
+
+    private fun setUpListener() {
+
+        with(binding!!) {
+
+            fabAddNote.setOnClickListener { goToAddNote() }
+
+        }
+    }
+
+    private fun goToAddNote() {
+        val navigate = NotesFragmentDirections.actionNotesFragmentToAddNoteFragment()
+        findNavController().navigate(navigate)
     }
 
     override fun onDestroy() {

@@ -3,6 +3,8 @@ package com.crisnavarro.todoapp.ui.main
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.navigation.NavHost
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupActionBarWithNavController
 import com.crisnavarro.todoapp.R
 import com.crisnavarro.todoapp.databinding.ActivityMainBinding
@@ -21,6 +23,11 @@ class MainActivity : AppCompatActivity() {
     private fun initViews() {
         val navHost = supportFragmentManager.findFragmentById(R.id.main_nav_host) as NavHost
         setupActionBarWithNavController(navHost.navController)
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        val navController = findNavController(R.id.main_nav_host)
+        return navController.navigateUp() || super.onSupportNavigateUp()
     }
 
     override fun onDestroy() {
