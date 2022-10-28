@@ -6,5 +6,13 @@
     <string name="image_empty_layout">image_empty_layout</string>
     <string name="there_are_not_notes_text">There are not notes</string>
     <string name="note_tittle_hint">Note tittle</string>
-    <string name="your_note_hint">Your note...</string>
+    <string name="your_note_hint">Your note…</string>
+    <string name="new_title_note_hint">New title note</string>
+    <string name="menu_search">menu_search</string>
+    <string name="short_by_text">Short by</string>
+    <string name="low_priority">Low priority</string>
+    <string name="medium_priority">Medium priority</string>
+    <string name="high_priority">High priority</string>
+    <string name="icon_save">icon_save</string>
+    <string name="icon_delete">Delete</string>
 </resources>
