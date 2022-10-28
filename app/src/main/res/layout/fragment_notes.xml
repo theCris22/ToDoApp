@@ -21,7 +21,6 @@
         android:layout_margin="16dp"
         android:contentDescription="@string/button_add_note"
         android:src="@drawable/icon_add"
-        app:backgroundTint="@color/main_yellow"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:tint="@color/black" />
@@ -29,6 +28,7 @@
     <include
         android:id="@+id/empty_layout"
         layout="@layout/empty_result_layout"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/recyclerView_notes"
         app:layout_constraintStart_toStartOf="parent"
