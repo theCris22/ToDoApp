@@ -36,7 +36,7 @@ class NotesFragment : Fragment(R.layout.fragment_notes), MenuProvider {
     private fun setUpListener() {
         with(binding!!) {
 
-            fabAddNote.setOnClickListener { goToUpdateNote() }
+            fabAddNote.setOnClickListener { goToAddNote() }
             recyclerViewNotes.setOnClickListener { goToUpdateNote() }
 
         }

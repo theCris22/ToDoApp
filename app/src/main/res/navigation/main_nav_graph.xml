@@ -9,19 +9,28 @@
         android:id="@+id/notesFragment"
         android:name="com.crisnavarro.todoapp.ui.notes.fragments.NotesFragment"
         android:label="List notes"
-        tools:layout="@layout/fragment_notes" >
+        tools:layout="@layout/fragment_notes">
         <action
             android:id="@+id/action_notesFragment_to_addNoteFragment"
-            app:destination="@id/addNoteFragment" />
+            app:destination="@id/addNoteFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_right"
+            app:popEnterAnim="@anim/slide_in_right"
+            app:popExitAnim="@anim/slide_out_right"
+            />
         <action
             android:id="@+id/action_notesFragment_to_updateNoteFragment"
-            app:destination="@id/updateNoteFragment" />
+            app:destination="@id/updateNoteFragment"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_left"/>
     </fragment>
     <fragment
         android:id="@+id/addNoteFragment"
         android:name="com.crisnavarro.todoapp.ui.addnotes.fragments.AddNoteFragment"
         android:label="Add note"
-        tools:layout="@layout/fragment_add_note" >
+        tools:layout="@layout/fragment_add_note">
         <action
             android:id="@+id/action_addNoteFragment_to_notesFragment"
             app:destination="@id/notesFragment" />
@@ -30,7 +39,7 @@
         android:id="@+id/updateNoteFragment"
         android:name="com.crisnavarro.todoapp.ui.updatenotes.fragments.UpdateNoteFragment"
         android:label="Update note"
-        tools:layout="@layout/fragment_update_note" >
+        tools:layout="@layout/fragment_update_note">
         <action
             android:id="@+id/action_updateNoteFragment_to_notesFragment"
             app:destination="@id/notesFragment" />
