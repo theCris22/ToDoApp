@@ -1,4 +1,4 @@
-package com.crisnavarro.todoapp.data
+package com.crisnavarro.todoapp.data.models
 
 enum class Priority {
     LOW,
