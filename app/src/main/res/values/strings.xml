@@ -16,4 +16,5 @@
     <string name="high_priority">High priority</string>
     <string name="icon_save">icon_save</string>
     <string name="icon_delete">Delete</string>
+    <string name="ok_text">Ok</string>
 </resources>

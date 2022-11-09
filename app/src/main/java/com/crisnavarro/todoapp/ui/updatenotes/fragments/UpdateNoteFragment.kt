@@ -3,15 +3,18 @@ package com.crisnavarro.todoapp.ui.updatenotes.fragments
 import android.os.Bundle
 import android.util.Log
 import android.view.*
+import android.widget.ArrayAdapter
 import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
+import androidx.navigation.fragment.navArgs
 import com.crisnavarro.todoapp.R
 import com.crisnavarro.todoapp.databinding.FragmentUpdateNoteBinding
 
 class UpdateNoteFragment : Fragment(R.layout.fragment_update_note), MenuProvider {
 
     private var binding: FragmentUpdateNoteBinding? = null
+    private val args by navArgs<UpdateNoteFragmentArgs>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -27,8 +30,27 @@ class UpdateNoteFragment : Fragment(R.layout.fragment_update_note), MenuProvider
         setUpViews()
     }
 
-    private fun setUpViews() {
-        requireActivity().addMenuProvider(this, viewLifecycleOwner, Lifecycle.State.RESUMED)
+    private fun setUpViews() = with(binding!!) {
+
+        requireActivity().addMenuProvider(
+            this@UpdateNoteFragment,
+            viewLifecycleOwner,
+            Lifecycle.State.RESUMED
+        )
+
+        setUpAdapter()
+        editTextTitleNote.setText(args.note.title)
+        //autoCompleteTextView.setText(args.note.priority.name)
+        editTextDescNote.setText(args.note.description)
+
+    }
+
+    private fun setUpAdapter() = with(binding!!) {
+        ArrayAdapter(
+            requireContext(),
+            android.R.layout.simple_dropdown_item_1line,
+            resources.getStringArray(R.array.priority_array)
+        ).apply { autoCompleteTextView.setAdapter(this) }
     }
 
     override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {

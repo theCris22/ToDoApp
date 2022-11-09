@@ -2,10 +2,7 @@ package com.crisnavarro.todoapp.ui.addnotes.fragments
 
 import android.os.Bundle
 import android.view.*
-import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import android.widget.TextView
-import androidx.core.content.ContextCompat
 import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -49,19 +46,6 @@ class AddNoteFragment : Fragment(R.layout.fragment_add_note), MenuProvider {
             android.R.layout.simple_dropdown_item_1line,
             resources.getStringArray(R.array.priority_array)
         ).apply { autoCompleteTextView.setAdapter(this) }
-
-        /*autoCompleteTextView.onItemSelectedListener = object: AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(p0: AdapterView<*>?, view: View?, position: Int, p3: Long) {
-                when(position) {
-                    0 -> { (p0?.getChildAt(0) as TextView).setTextColor(ContextCompat.getColor(requireContext(), android.R.color.holo_green_light)) }
-                    1 -> { (p0?.getChildAt(0) as TextView).setTextColor(ContextCompat.getColor(requireContext(), R.color.main_light_yellow)) }
-                    2 -> { (p0?.getChildAt(0) as TextView).setTextColor(ContextCompat.getColor(requireContext(), android.R.color.holo_red_dark)) }
-                }
-            }
-
-            override fun onNothingSelected(p0: AdapterView<*>?) {}
-        }*/
-
     }
 
     override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
@@ -94,7 +78,7 @@ class AddNoteFragment : Fragment(R.layout.fragment_add_note), MenuProvider {
                     )
                 )
             } else
-                Snackbar.make(requireView(), "Fill the fields", Snackbar.LENGTH_SHORT).show()
+                Snackbar.make(requireView(), "Fill the fields before continue", Snackbar.LENGTH_SHORT).show()
         }
     }
 
@@ -110,14 +94,15 @@ class AddNoteFragment : Fragment(R.layout.fragment_add_note), MenuProvider {
 
     private fun getPriority(): Priority {
         return when (binding!!.autoCompleteTextView.text.toString()) {
-            "LOW" -> Priority.LOW
-            "MEDIUM" -> Priority.MEDIUM
+            "Low" -> Priority.LOW
+            "Medium" -> Priority.MEDIUM
             else -> Priority.HIGH
         }
     }
 
     override fun onDestroy() {
         super.onDestroy()
+        binding = null
     }
 
 }

@@ -43,5 +43,8 @@
         <action
             android:id="@+id/action_updateNoteFragment_to_notesFragment"
             app:destination="@id/notesFragment" />
+        <argument
+            android:name="note"
+            app:argType="com.crisnavarro.todoapp.data.db.entities.NoteEntity" />
     </fragment>
 </navigation>

@@ -9,7 +9,9 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.navigation.fragment.findNavController
 import com.crisnavarro.todoapp.R
+import com.crisnavarro.todoapp.data.db.entities.NoteEntity
 import com.crisnavarro.todoapp.databinding.FragmentNotesBinding
+import com.crisnavarro.todoapp.ui.notes.adapters.NotesAdapter
 import com.crisnavarro.todoapp.ui.notes.viewmodel.NotesViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -17,6 +19,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class NotesFragment : Fragment(R.layout.fragment_notes), MenuProvider {
 
     private var binding: FragmentNotesBinding? = null
+    private lateinit var adapter: NotesAdapter
     private val viewModel: NotesViewModel by viewModels()
 
     override fun onCreateView(
@@ -36,22 +39,27 @@ class NotesFragment : Fragment(R.layout.fragment_notes), MenuProvider {
     }
 
 
-    private fun setUpViews() {
-        requireActivity().addMenuProvider(this, viewLifecycleOwner, Lifecycle.State.RESUMED)
+    private fun setUpViews() = with(binding!!) {
+        requireActivity().addMenuProvider(
+            this@NotesFragment,
+            viewLifecycleOwner,
+            Lifecycle.State.RESUMED
+        )
+
+        adapter = NotesAdapter(requireContext()) { goToUpdateNote(it) }
+        recyclerViewNotes.adapter = adapter
+        recyclerViewNotes.setHasFixedSize(true)
     }
 
     private fun setUpListener() {
         with(binding!!) {
-
             fabAddNote.setOnClickListener { goToAddNote() }
-            recyclerViewNotes.setOnClickListener { goToUpdateNote() }
-
         }
     }
 
     private fun setUpObservers() {
         viewModel.getAllNotes().observe(viewLifecycleOwner) {
-            Log.e("LIST ->", it.toString())
+            adapter.submitList(it)
         }
     }
 
@@ -60,8 +68,8 @@ class NotesFragment : Fragment(R.layout.fragment_notes), MenuProvider {
         findNavController().navigate(navigate)
     }
 
-    private fun goToUpdateNote() {
-        val navigate = NotesFragmentDirections.actionNotesFragmentToUpdateNoteFragment()
+    private fun goToUpdateNote(note: NoteEntity) {
+        val navigate = NotesFragmentDirections.actionNotesFragmentToUpdateNoteFragment(note)
         findNavController().navigate(navigate)
     }
 

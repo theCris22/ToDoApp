@@ -12,6 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         android:hint="@string/new_title_note_hint"
+        app:boxBackgroundColor="@color/very_low_gray"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -33,6 +34,7 @@
         android:layout_width="0dp"
         android:layout_height="50dp"
         android:layout_marginTop="16dp"
+        app:boxBackgroundColor="@color/very_low_gray"
         app:layout_constraintEnd_toEndOf="@+id/textInputLayout"
         app:layout_constraintStart_toStartOf="@+id/textInputLayout"
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout">
@@ -41,6 +43,7 @@
             android:id="@+id/auto_complete_text_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:hint="@string/text_priority"
             android:imeOptions="actionNext"
             android:inputType="none"
             android:labelFor="@id/auto_complete_text_view" />
@@ -53,12 +56,14 @@
         android:layout_height="0dp"
         android:layout_marginVertical="16dp"
         android:hint="@string/your_note_hint"
+        app:boxBackgroundColor="@color/very_low_gray"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/textInputLayout2"
         app:layout_constraintStart_toStartOf="@+id/textInputLayout2"
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout2">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edit_text_desc_note"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="start"
