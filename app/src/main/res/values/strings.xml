@@ -10,6 +10,7 @@
     <string name="new_title_note_hint">New title note</string>
     <string name="menu_search">menu_search</string>
     <string name="short_by_text">Short by</string>
+    <string name="text_priority">Priority</string>
     <string name="low_priority">Low priority</string>
     <string name="medium_priority">Medium priority</string>
     <string name="high_priority">High priority</string>

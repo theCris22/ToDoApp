@@ -1,6 +1,17 @@
 package com.crisnavarro.todoapp.ui.notes.viewmodel
 
 import androidx.lifecycle.ViewModel
+import com.crisnavarro.todoapp.data.NotesRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-class NotesViewModel : ViewModel() {
+@HiltViewModel
+class NotesViewModel @Inject constructor(private val repository: NotesRepository) : ViewModel() {
+
+    init {
+        getAllNotes()
+    }
+
+    fun getAllNotes() = repository.getAllNotes()
+
 }
