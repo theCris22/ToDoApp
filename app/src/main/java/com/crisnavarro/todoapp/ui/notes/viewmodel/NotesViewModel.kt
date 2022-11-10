@@ -8,10 +8,6 @@ import javax.inject.Inject
 @HiltViewModel
 class NotesViewModel @Inject constructor(private val repository: NotesRepository) : ViewModel() {
 
-    init {
-        getAllNotes()
-    }
-
     fun getAllNotes() = repository.getAllNotes()
 
 }

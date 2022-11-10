@@ -59,7 +59,14 @@ class NotesFragment : Fragment(R.layout.fragment_notes), MenuProvider {
 
     private fun setUpObservers() {
         viewModel.getAllNotes().observe(viewLifecycleOwner) {
-            adapter.submitList(it)
+            if (it.any()) {
+                adapter.submitList(it)
+                binding!!.recyclerViewNotes.visibility = View.VISIBLE
+                binding!!.emptyLayout.emptyLayout.visibility = View.GONE
+            } else {
+                binding!!.recyclerViewNotes.visibility = View.GONE
+                binding!!.emptyLayout.emptyLayout.visibility = View.VISIBLE
+            }
         }
     }
 
