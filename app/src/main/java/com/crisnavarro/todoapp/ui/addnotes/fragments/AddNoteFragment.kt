@@ -7,6 +7,7 @@ import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
+import androidx.navigation.fragment.findNavController
 import com.crisnavarro.todoapp.R
 import com.crisnavarro.todoapp.data.db.entities.NoteEntity
 import com.crisnavarro.todoapp.data.models.Priority
@@ -77,8 +78,13 @@ class AddNoteFragment : Fragment(R.layout.fragment_add_note), MenuProvider {
                         description = description
                     )
                 )
+                findNavController().popBackStack()
             } else
-                Snackbar.make(requireView(), "Fill the fields before continue", Snackbar.LENGTH_SHORT).show()
+                Snackbar.make(
+                    requireView(),
+                    "Fill the fields before continue",
+                    Snackbar.LENGTH_SHORT
+                ).show()
         }
     }
 

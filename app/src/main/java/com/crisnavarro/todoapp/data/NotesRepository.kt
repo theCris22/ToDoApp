@@ -9,6 +9,7 @@ class NotesRepository @Inject constructor(private val notesDao: NoteDao) {
 
     fun getAllNotes() = notesDao.getAllNotes()
     suspend fun insertNote(note: NoteEntity) = notesDao.insertNote(note)
+    suspend fun updateNote(note: NoteEntity) = notesDao.updateNote(note)
     suspend fun deleteNote(note: NoteEntity) = notesDao.deleteNote(note)
 
 }

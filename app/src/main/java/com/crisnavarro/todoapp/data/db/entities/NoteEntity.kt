@@ -13,7 +13,7 @@ import java.io.Serializable
 data class NoteEntity(
     @PrimaryKey(autoGenerate = true)
     val id: Int? = null,
-    val title: String,
-    val priority: Priority,
-    val description: String,
+    var title: String,
+    var priority: Priority,
+    var description: String,
 ):Parcelable
