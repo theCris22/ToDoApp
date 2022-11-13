@@ -9,5 +9,6 @@ import javax.inject.Inject
 class NotesViewModel @Inject constructor(private val repository: NotesRepository) : ViewModel() {
 
     fun getAllNotes() = repository.getAllNotes()
+    fun searchNote(query: String) = repository.searchNote(query)
 
 }

@@ -19,4 +19,7 @@ interface NoteDao {
     @Delete
     suspend fun deleteNote(note: NoteEntity)
 
+    @Query("SELECT * FROM Notes WHERE title LIKE :query")
+    fun searchNote(query: String): LiveData<List<NoteEntity>>
+
 }

@@ -1,13 +1,15 @@
 package com.crisnavarro.todoapp.ui.notes.fragments
 
 import android.os.Bundle
-import android.util.Log
 import android.view.*
+import android.widget.SearchView
 import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.crisnavarro.todoapp.R
 import com.crisnavarro.todoapp.data.db.entities.NoteEntity
 import com.crisnavarro.todoapp.databinding.FragmentNotesBinding
@@ -16,7 +18,8 @@ import com.crisnavarro.todoapp.ui.notes.viewmodel.NotesViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class NotesFragment : Fragment(R.layout.fragment_notes), MenuProvider {
+class NotesFragment : Fragment(R.layout.fragment_notes), MenuProvider,
+    SearchView.OnQueryTextListener {
 
     private var binding: FragmentNotesBinding? = null
     private lateinit var adapter: NotesAdapter
@@ -45,8 +48,13 @@ class NotesFragment : Fragment(R.layout.fragment_notes), MenuProvider {
             viewLifecycleOwner,
             Lifecycle.State.RESUMED
         )
+        setUpRecyclerView()
+    }
 
+    private fun setUpRecyclerView() = with(binding!!) {
         adapter = NotesAdapter(requireContext()) { goToUpdateNote(it) }
+        recyclerViewNotes.layoutManager =
+            StaggeredGridLayoutManager(2, LinearLayoutManager.VERTICAL)
         recyclerViewNotes.adapter = adapter
         recyclerViewNotes.setHasFixedSize(true)
     }
@@ -82,6 +90,12 @@ class NotesFragment : Fragment(R.layout.fragment_notes), MenuProvider {
 
     override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
         menuInflater.inflate(R.menu.menu_notes_fragment, menu)
+
+        val search = menu.findItem(R.id.menu_search)
+        val searchView = search.actionView as SearchView
+        searchView.isSubmitButtonEnabled = true
+        searchView.setOnQueryTextListener(this)
+
     }
 
     override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
@@ -93,6 +107,22 @@ class NotesFragment : Fragment(R.layout.fragment_notes), MenuProvider {
             else -> false
         }*/
         return false
+    }
+
+    override fun onQueryTextSubmit(query: String?): Boolean {
+        searchNote(query ?: "")
+        return true
+    }
+
+    override fun onQueryTextChange(query: String?): Boolean {
+        searchNote(query ?: "")
+        return true
+    }
+
+    private fun searchNote(query: String) {
+        viewModel.searchNote("%$query%").observe(viewLifecycleOwner) {
+            adapter.submitList(it)
+        }
     }
 
     override fun onDestroy() {
