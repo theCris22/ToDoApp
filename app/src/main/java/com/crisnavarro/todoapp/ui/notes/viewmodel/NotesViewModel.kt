@@ -2,7 +2,6 @@ package com.crisnavarro.todoapp.ui.notes.viewmodel
 
 import androidx.lifecycle.ViewModel
 import com.crisnavarro.todoapp.data.NotesRepository
-import com.crisnavarro.todoapp.data.models.Priority
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 

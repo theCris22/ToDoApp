@@ -6,7 +6,6 @@ import androidx.room.PrimaryKey
 import com.crisnavarro.todoapp.core.Constants
 import com.crisnavarro.todoapp.data.models.Priority
 import kotlinx.parcelize.Parcelize
-import java.io.Serializable
 
 @Entity(tableName = Constants.TABLE_NAME)
 @Parcelize
@@ -16,4 +15,4 @@ data class NoteEntity(
     var title: String,
     var priority: Priority,
     var description: String,
-):Parcelable
+) : Parcelable

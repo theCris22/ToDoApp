@@ -4,7 +4,6 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView.OnItemClickListener
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
@@ -13,7 +12,6 @@ import com.crisnavarro.todoapp.R
 import com.crisnavarro.todoapp.data.db.entities.NoteEntity
 import com.crisnavarro.todoapp.data.models.Priority
 import com.crisnavarro.todoapp.databinding.RowNoteBinding
-import com.crisnavarro.todoapp.ui.notes.fragments.NotesFragmentDirections
 
 class NotesAdapter(
     private val context: Context,
@@ -35,7 +33,11 @@ class NotesAdapter(
 
         private val binding = RowNoteBinding.bind(view)
 
-        fun setData(context: Context, note: NoteEntity, onItemClickListener: (note: NoteEntity) -> Unit) = with(binding) {
+        fun setData(
+            context: Context,
+            note: NoteEntity,
+            onItemClickListener: (note: NoteEntity) -> Unit
+        ) = with(binding) {
             tvTitleNote.text = note.title
             tvDescriptionNote.text = note.description
 
