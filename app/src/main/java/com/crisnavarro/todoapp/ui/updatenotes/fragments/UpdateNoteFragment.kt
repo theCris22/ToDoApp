@@ -10,7 +10,6 @@ import androidx.lifecycle.Lifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.crisnavarro.todoapp.R
-import com.crisnavarro.todoapp.data.db.entities.NoteEntity
 import com.crisnavarro.todoapp.data.models.Priority
 import com.crisnavarro.todoapp.databinding.FragmentUpdateNoteBinding
 import com.crisnavarro.todoapp.ui.updatenotes.viewmodel.UpdateNoteViewModel

@@ -20,4 +20,5 @@
     <string name="low_priority_text">Low</string>
     <string name="medium_priority_text">Medium</string>
     <string name="high_priority_text">High</string>
+    <string name="all">All</string>
 </resources>

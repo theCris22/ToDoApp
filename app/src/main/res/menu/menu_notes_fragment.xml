@@ -18,6 +18,10 @@
             <menu>
 
                 <item
+                    android:id="@+id/priority_all"
+                    android:title="@string/all" />
+
+                <item
                     android:id="@+id/priority_low"
                     android:title="@string/low_priority" />
 

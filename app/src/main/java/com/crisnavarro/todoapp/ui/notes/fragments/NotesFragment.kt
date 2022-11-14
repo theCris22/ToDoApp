@@ -1,7 +1,6 @@
 package com.crisnavarro.todoapp.ui.notes.fragments
 
 import android.os.Bundle
-import android.util.Log
 import android.view.*
 import android.widget.SearchView
 import androidx.core.view.MenuProvider
@@ -13,7 +12,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.crisnavarro.todoapp.R
 import com.crisnavarro.todoapp.data.db.entities.NoteEntity
-import com.crisnavarro.todoapp.data.models.Priority
 import com.crisnavarro.todoapp.databinding.FragmentNotesBinding
 import com.crisnavarro.todoapp.ui.notes.adapters.NotesAdapter
 import com.crisnavarro.todoapp.ui.notes.viewmodel.NotesViewModel
@@ -68,15 +66,17 @@ class NotesFragment : Fragment(R.layout.fragment_notes), MenuProvider,
     }
 
     private fun setUpObservers() {
-        viewModel.getAllNotes().observe(viewLifecycleOwner) {
-            if (it.any()) {
-                adapter.submitList(it)
-                binding!!.recyclerViewNotes.visibility = View.VISIBLE
-                binding!!.emptyLayout.emptyLayout.visibility = View.GONE
-            } else {
-                binding!!.recyclerViewNotes.visibility = View.GONE
-                binding!!.emptyLayout.emptyLayout.visibility = View.VISIBLE
-            }
+        viewModel.getAllNotes().observe(viewLifecycleOwner) { getAllNotes(it) }
+    }
+
+    private fun getAllNotes(list: List<NoteEntity>) = with(binding!!) {
+        if (list.any()) {
+            adapter.submitList(list)
+            recyclerViewNotes.visibility = View.VISIBLE
+            emptyLayout.emptyLayout.visibility = View.GONE
+        } else {
+            recyclerViewNotes.visibility = View.GONE
+            emptyLayout.emptyLayout.visibility = View.VISIBLE
         }
     }
 
@@ -102,6 +102,10 @@ class NotesFragment : Fragment(R.layout.fragment_notes), MenuProvider,
 
     override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
         return when (menuItem.itemId) {
+            R.id.priority_all -> {
+                viewModel.getAllNotes().observe(viewLifecycleOwner) { getAllNotes(it) }
+                true
+            }
             R.id.priority_low -> {
                 viewModel.getLowPriorityNotes(getString(R.string.low_priority_text))
                     .observe(viewLifecycleOwner) { adapter.submitList(it) }

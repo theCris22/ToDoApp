@@ -3,7 +3,6 @@ package com.crisnavarro.todoapp.data.db.dao
 import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.crisnavarro.todoapp.data.db.entities.NoteEntity
-import com.crisnavarro.todoapp.data.models.Priority
 
 @Dao
 interface NoteDao {
