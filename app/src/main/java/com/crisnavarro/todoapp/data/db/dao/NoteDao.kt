@@ -3,6 +3,7 @@ package com.crisnavarro.todoapp.data.db.dao
 import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.crisnavarro.todoapp.data.db.entities.NoteEntity
+import com.crisnavarro.todoapp.data.models.Priority
 
 @Dao
 interface NoteDao {
@@ -21,5 +22,9 @@ interface NoteDao {
 
     @Query("SELECT * FROM Notes WHERE title LIKE :query")
     fun searchNote(query: String): LiveData<List<NoteEntity>>
+
+    @Query("SELECT * FROM Notes WHERE priority LIKE :priority")
+    fun getLowPriorityNotes(priority: String): LiveData<List<NoteEntity>>
+
 
 }

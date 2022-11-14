@@ -12,5 +12,6 @@ class NotesRepository @Inject constructor(private val notesDao: NoteDao) {
     suspend fun updateNote(note: NoteEntity) = notesDao.updateNote(note)
     suspend fun deleteNote(note: NoteEntity) = notesDao.deleteNote(note)
     fun searchNote(query: String) = notesDao.searchNote(query)
+    fun getLowPriorityNotes(priority: String) = notesDao.getLowPriorityNotes(priority)
 
 }

@@ -1,6 +1,7 @@
 package com.crisnavarro.todoapp.ui.notes.fragments
 
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import android.widget.SearchView
 import androidx.core.view.MenuProvider
@@ -12,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.crisnavarro.todoapp.R
 import com.crisnavarro.todoapp.data.db.entities.NoteEntity
+import com.crisnavarro.todoapp.data.models.Priority
 import com.crisnavarro.todoapp.databinding.FragmentNotesBinding
 import com.crisnavarro.todoapp.ui.notes.adapters.NotesAdapter
 import com.crisnavarro.todoapp.ui.notes.viewmodel.NotesViewModel
@@ -99,14 +101,24 @@ class NotesFragment : Fragment(R.layout.fragment_notes), MenuProvider,
     }
 
     override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
-        /*return when (menuItem.itemId) {
-            R.id.clear_text_menu -> {
-                binding!!.editTextHash.text.clear()
+        return when (menuItem.itemId) {
+            R.id.priority_low -> {
+                viewModel.getLowPriorityNotes(getString(R.string.low_priority_text))
+                    .observe(viewLifecycleOwner) { adapter.submitList(it) }
+                true
+            }
+            R.id.priority_medium -> {
+                viewModel.getLowPriorityNotes(getString(R.string.medium_priority_text))
+                    .observe(viewLifecycleOwner) { adapter.submitList(it) }
+                true
+            }
+            R.id.priority_high -> {
+                viewModel.getLowPriorityNotes(getString(R.string.high_priority_text))
+                    .observe(viewLifecycleOwner) { adapter.submitList(it) }
                 true
             }
             else -> false
-        }*/
-        return false
+        }
     }
 
     override fun onQueryTextSubmit(query: String?): Boolean {
